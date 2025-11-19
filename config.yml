@@ -1,4 +1,4 @@
-token: "lip_esy0IOyfYeoLfeHl1Tu2"    # Lichess OAuth2 Token.
+token: "lip_9QE2Cd6wgFBRsxbxssy9"    # Lichess OAuth2 Token.
 url: "https://lichess.org/"        # Lichess base URL.
 
 engine:                            # Engine settings.
@@ -11,7 +11,7 @@ engine:                            # Engine settings.
   ponder: false                     # Think on opponent's time.
 
   polyglot:
-    enabled: true                 # Activate polyglot book.
+    enabled: false                 # Activate polyglot book.
     book:
       standard:                    # List of book file paths for variant standard.
         - engines/Perfect2021.bin
@@ -92,7 +92,7 @@ engine:                            # Engine settings.
 #   Hash: 256
 
   uci_options:                     # Arbitrary UCI options passed to the engine.
-    Depth: 5
+    Depth: 4
 #   go_commands:                   # Additional options to pass to the UCI go command.
 #     nodes: 1                     # Search so many nodes only.
 #     depth: 5                     # Search depth ply only.

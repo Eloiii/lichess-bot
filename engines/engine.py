@@ -617,12 +617,14 @@ class UCIEngine:
 
     def go(self, tokens):
         if self.use_book:
-            entry = self.book_reader.weighted_choice(self.board)
-
-            print(f"info string Book move found: {entry.move.uci()}")
-            print(f"bestmove {entry.move.uci()}")
-            sys.stdout.flush()
-            return
+            try:
+                entry = self.book_reader.weighted_choice(self.board)
+                print(f"info string Book move found: {entry.move.uci()}")
+                print(f"bestmove {entry.move.uci()}")
+                sys.stdout.flush()
+                return
+            except IndexError:
+                pass
         if len(transposition_table) > 100000:
             transposition_table.clear()
 
@@ -638,7 +640,7 @@ class UCIEngine:
             print(f"info string Error: {e}", file=sys.stderr)
             print("bestmove 0000")
 
-        sys.stdout.flush()
+        #sys.stdout.flush()
 
     def quit(self):
         sys.exit(0)
