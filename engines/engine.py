@@ -566,11 +566,11 @@ class UCIEngine:
         print("id author E")
         print("option name Depth type spin default 4 min 1 max 10")
         print("uciok")
-        sys.stdout.flush()
+        return "id name NulEngine\nid author E\noption name Depth type spin default 4 min 1 max 10\nuciok"
 
     def isready(self):
         print("readyok")
-        sys.stdout.flush()
+        return "readyok"
 
     def setoption(self, name, value):
         if name.lower() == "depth":
@@ -622,7 +622,7 @@ class UCIEngine:
                 print(f"info string Book move found: {entry.move.uci()}")
                 print(f"bestmove {entry.move.uci()}")
                 sys.stdout.flush()
-                return
+                return f"bestmove {entry.move.uci()}"
             except IndexError:
                 pass
         if len(transposition_table) > 100000:
@@ -634,11 +634,14 @@ class UCIEngine:
             if best_move:
                 print(f"info depth {self.search_depth} score cp {best_eval}")
                 print(f"bestmove {best_move.uci()}")
+                return f"bestmove {best_move.uci()}"
             else:
                 print("bestmove 0000")
+                return "bestmove 0000"
         except Exception as e:
             print(f"info string Error: {e}", file=sys.stderr)
             print("bestmove 0000")
+            return "bestmove 0000"
 
         #sys.stdout.flush()
 
